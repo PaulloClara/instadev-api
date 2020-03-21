@@ -1,6 +1,7 @@
 const express = require("express");
-
 const server = express();
+
+require("./routes").config(server);
 
 const port = 3000;
 
