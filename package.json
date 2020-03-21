@@ -1,0 +1,11 @@
+{
+  "name": "instadev-api",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "repository": "https://github.com/paulloclara/instadev-api",
+  "author": "paulloclara <paulloclara@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ."
+  }
+}
