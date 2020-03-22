@@ -1,4 +1,5 @@
 require("dotenv").config();
+require("./services/mongo").config();
 
 const express = require("express");
 const server = express();
