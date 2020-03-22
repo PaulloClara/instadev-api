@@ -1,9 +1,9 @@
 require("dotenv").config();
 require("./services/mongo").config();
 
-const express = require("express");
-const server = express();
+const server = require("express")();
 
+require("./config/static-path").config(server, ["..", "uploads"]);
 require("./routes").config(server);
 
 const port = 3000;
