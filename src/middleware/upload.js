@@ -5,7 +5,9 @@ module.exports = multer({
   storage: multer.diskStorage({
     destination: resolvePath(__dirname, "..", "..", "uploads"),
     filename(request, file, callback) {
-      callback(null, file.originalname);
+      const name = file.originalname.replace(/ /g, "_").toLowerCase();
+
+      callback(null, name);
     }
   })
 });
