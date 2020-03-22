@@ -9,7 +9,7 @@ require("./config/static-path").config(serverExpress, ["..", "uploads"]);
 
 require("./routes").config(serverExpress);
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 serverHTTP.listen(port, _ => {
   console.log(`\n\tServer running on localhost:${port}\n`);
