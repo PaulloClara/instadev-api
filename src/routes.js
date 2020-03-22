@@ -1,9 +1,11 @@
 const router = require("express").Router();
+const multer = require("multer")(require("./configs/upload"));
+
 const PostController = require("./controllers/post");
 
 router.get("/posts", PostController.index);
 router.get("/posts/:id", PostController.show);
-router.post("/posts", PostController.store);
+router.post("/posts", multer.single("image"), PostController.store);
 router.put("/posts", PostController.update);
 router.delete("/posts", PostController.destroy);
 
