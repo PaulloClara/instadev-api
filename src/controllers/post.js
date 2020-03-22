@@ -26,5 +26,16 @@ module.exports = {
 
   async update(request, response) {},
 
+  async updateLike(request, response) {
+    const { id: _id } = request.params;
+
+    const post = await Post.findOne({ _id });
+    post.likes += 1;
+
+    await post.save();
+
+    return response.status(200).json(post);
+  },
+
   async destroy(request, response) {}
 };
