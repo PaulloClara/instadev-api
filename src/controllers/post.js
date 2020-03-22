@@ -21,6 +21,8 @@ module.exports = {
       image
     });
 
+    request.socketIO.emit("post", post);
+
     return response.status(200).json(post);
   },
 
@@ -30,9 +32,11 @@ module.exports = {
     const { id: _id } = request.params;
 
     const post = await Post.findOne({ _id });
-    post.likes += 1;
 
+    post.likes += 1;
     await post.save();
+
+    request.socketIO.emit("like", post);
 
     return response.status(200).json(post);
   },

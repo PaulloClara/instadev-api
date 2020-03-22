@@ -1,15 +1,16 @@
 require("dotenv").config();
 require("./services/mongo").config();
 
-const server = require("express")();
+const serverExpress = require("express")();
+const { serverHTTP } = require("./config/socket-io").config(serverExpress);
 
-require("./config/cors").config(server);
-require("./config/static-path").config(server, ["..", "uploads"]);
+require("./config/cors").config(serverExpress);
+require("./config/static-path").config(serverExpress, ["..", "uploads"]);
 
-require("./routes").config(server);
+require("./routes").config(serverExpress);
 
 const port = 3000;
 
-server.listen(port, _ => {
+serverHTTP.listen(port, _ => {
   console.log(`\n\tServer running on localhost:${port}\n`);
 });
