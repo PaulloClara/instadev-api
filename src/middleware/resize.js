@@ -8,7 +8,7 @@ module.exports = async (request, response, next) => {
   await sharp(path)
     .resize(500)
     .jpeg({ quality: 70 })
-    .toFile(resolvePath(destination, `-${name}`));
+    .toFile(resolvePath(destination, `${name.split(".")[0]}.jpg`));
 
   removeFile(path);
 
