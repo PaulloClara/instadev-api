@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const multer = require("multer")(require("./configs/upload"));
 
 const PostController = require("./controllers/post");
+const UploadMiddleware = require("./middleware/upload");
 
 router.get("/posts", PostController.index);
 router.get("/posts/:id", PostController.show);
-router.post("/posts", multer.single("image"), PostController.store);
+router.post("/posts", UploadMiddleware.single("image"), PostController.store);
 router.put("/posts", PostController.update);
 router.put("/posts/:id/likes", PostController.updateLike);
 router.delete("/posts", PostController.destroy);
