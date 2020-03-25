@@ -1,7 +1,11 @@
 require("dotenv").config();
 require("./services/mongo").config();
 
-const serverExpress = require("express")();
+const express = require("express");
+
+const serverExpress = express();
+serverExpress.use(express.json());
+
 const { serverHTTP } = require("./config/socket-io").config(serverExpress);
 
 require("./config/cors").config(serverExpress);
