@@ -7,7 +7,13 @@ module.exports = {
     return response.status(200).json(posts);
   },
 
-  async show(request, response) {},
+  async show(request, response) {
+    const { id: _id } = request.params;
+
+    const post = await Post.findOne({ _id });
+
+    return response.status(200).json(post);
+  },
 
   async store(request, response) {
     const { filename: image } = request.file;
