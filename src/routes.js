@@ -15,7 +15,7 @@ router.post(
 );
 router.put("/posts", PostController.update);
 router.put("/posts/:id/likes", PostController.updateLike);
-router.delete("/posts", PostController.destroy);
+router.delete("/posts/:id", PostController.destroy);
 
 module.exports = {
   config(server) {

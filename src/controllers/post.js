@@ -47,5 +47,11 @@ module.exports = {
     return response.status(200).json(post);
   },
 
-  async destroy(request, response) {}
+  async destroy(request, response) {
+    const { id: _id } = request.params;
+
+    const result = await Post.deleteOne({ _id });
+
+    return response.status(200).json({ result: "OK" });
+  }
 };
