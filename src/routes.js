@@ -2,15 +2,15 @@ const router = require("express").Router();
 
 const PostController = require("./controllers/post");
 
-const UploadMiddleware = require("./middleware/upload");
-const ResizeMiddleware = require("./middleware/resize");
+const SaveIMGMiddleware = require("./middleware/save-img");
+const ResizeIMGMiddleware = require("./middleware/resize-img");
 
 router.get("/posts", PostController.index);
 router.get("/posts/:id", PostController.show);
 router.post(
   "/posts",
-  UploadMiddleware.single("image"),
-  ResizeMiddleware,
+  SaveIMGMiddleware.single("image"),
+  ResizeIMGMiddleware,
   PostController.store
 );
 router.put("/posts/:id", PostController.update);
