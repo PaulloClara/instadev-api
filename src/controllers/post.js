@@ -32,7 +32,14 @@ module.exports = {
     return response.status(200).json(post);
   },
 
-  async update(request, response) {},
+  async update(request, response) {
+    const { id: _id } = request.params;
+    const json = request.body;
+
+    const result = await Post.updateOne({ _id }, json);
+
+    return response.status(200).json({ result: "OK" });
+  },
 
   async updateLike(request, response) {
     const { id: _id } = request.params;

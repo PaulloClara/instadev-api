@@ -13,9 +13,9 @@ router.post(
   ResizeMiddleware,
   PostController.store
 );
-router.put("/posts", PostController.update);
-router.put("/posts/:id/likes", PostController.updateLike);
+router.put("/posts/:id", PostController.update);
 router.delete("/posts/:id", PostController.destroy);
+router.put("/posts/:id/likes", PostController.updateLike);
 
 module.exports = {
   config(server) {
