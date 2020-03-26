@@ -4,9 +4,14 @@ const PostSchema = Schema(
   {
     author: String,
     place: String,
-    description: String,
     hashtag: String,
-    image: String,
+    description: String,
+    image: {
+      url: String,
+      name: String,
+      size: Number,
+      extension: String
+    },
     likes: {
       type: Number,
       default: 0

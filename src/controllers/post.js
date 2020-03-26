@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const ImgBBAPI = require("../services/imgbb");
 
 module.exports = {
   async index(request, response) {
@@ -16,15 +17,23 @@ module.exports = {
   },
 
   async store(request, response) {
-    const { filename: image } = request.file;
     const { author, place, description, hashtag } = request.body;
+
+    const { url, name, size, extension } = (await ImgBBAPI.upload(
+      request.file
+    )).data.data.image;
 
     const post = await Post.create({
       author,
       place,
-      description,
       hashtag,
-      image
+      description,
+      image: {
+        url,
+        name,
+        size,
+        extension
+      }
     });
 
     request.socketIO.emit("post", post);
